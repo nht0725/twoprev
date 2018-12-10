@@ -10,10 +10,6 @@ gulp.task('devScss', function() {
         .pipe(gulp.dest('./src/css'))
 })
 
-gulp.task('watch', function() {
-    gulp.src('./src/sass/*.scss', gulp.series('devScss'))
-})
-
 gulp.task('server', function() {
     gulp.src('./src')
         .pipe(server({
@@ -23,6 +19,10 @@ gulp.task('server', function() {
                 target: 'http://localhost:3000/users'
             }]
         }))
+})
+
+gulp.task('watch', function() {
+    gulp.src(gulp.watch('./src/sass/*.scss', gulp.series('devScss')))
 })
 
 gulp.task('default', gulp.series('server', 'watch'))
